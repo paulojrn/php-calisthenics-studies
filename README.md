@@ -11,6 +11,9 @@
 6. Apenas 1 operador de acesso por instrução
     6.1. Lei de Demeter: http://wiki.c2.com/?LawOfDemeter
 7. Nunca abrevie
+    7.1. Clean code
+8. Mantenha classes (máx. 50 linhas) e pacotes pequenos (máx. 10 classes)
+9. Tenha no máximo 2 propriedades por classe
 
 ## Configs
 1. pecl install ds
