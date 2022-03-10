@@ -2,9 +2,11 @@
 
 namespace Alura\Calisthenics\Tests\Unit\Domain\Student;
 
+use Alura\Calisthenics\Domain\Email\Email;
 use Alura\Calisthenics\Domain\Student\Student;
 use Alura\Calisthenics\Domain\Video\Video;
 use PHPUnit\Framework\TestCase;
+use DateTimeImmutable;
 
 class StudentTest extends TestCase
 {
@@ -13,8 +15,8 @@ class StudentTest extends TestCase
     protected function setUp(): void
     {
         $this->student = new Student(
-            'email@example.com',
-            new \DateTimeImmutable('1997-10-15'),
+            new Email('email@example.com'),
+            new DateTimeImmutable('1997-10-15'),
             'Vinicius',
             'Dias',
             'Rua de Exemplo',
@@ -33,7 +35,7 @@ class StudentTest extends TestCase
 
     public function testStudentWithFirstWatchedVideoInLessThan90DaysHasAccess()
     {
-        $date = new \DateTimeImmutable('89 days');
+        $date = new DateTimeImmutable('89 days');
         $this->student->watch(new Video(), $date);
 
         self::assertTrue($this->student->hasAccess());
@@ -50,7 +52,7 @@ class StudentTest extends TestCase
 
     public function testStudentWithFirstWatchedVideoIn90DaysDoesntHaveAccess()
     {
-        $date = new \DateTimeImmutable('-90 days');
+        $date = new DateTimeImmutable('-90 days');
         $this->student->watch(new Video(), $date);
 
         self::assertFalse($this->student->hasAccess());
